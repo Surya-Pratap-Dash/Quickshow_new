@@ -3,21 +3,25 @@
   "installCommand": "npm install && npm --prefix client install && npm --prefix server install",
   "buildCommand": "npm run build",
   "outputDirectory": "client/dist",
-  "framework": "vite",
-  "devCommand": "npm run dev",
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "server/server.js"
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
     },
     {
-      "src": "/(.*)",
-      "dest": "client/dist/$1"
-    },
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
     {
-      "src": "/(.*)",
-      "dest": "client/index.html",
-      "status": 200
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
     }
   ],
   "env": {
