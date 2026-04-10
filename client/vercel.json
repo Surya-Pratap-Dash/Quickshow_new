@@ -4,10 +4,6 @@
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "../server/server.js"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
@@ -28,6 +24,10 @@
           "key": "X-Frame-Options",
           "value": "DENY"
         }
+      ]
+    }
+  ]
+}
       ]
     }
   ]
